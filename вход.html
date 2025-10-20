@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Вход / Регистрация</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="стиль/вход.css">
+</head>
+<body>
+  <div class="container" id="formContainer">
+    <h2 id="formTitle">Регистрация</h2>
+
+    <div id="formContent">
+      <input type="text" id="name" placeholder="Имя">
+      <input type="email" id="email" placeholder="Email">
+      <input type="tel" id="phone" required pattern="^\+?[0-9\s\-]{7,15}$" placeholder="Номер телефона">
+      <input type="password" id="password" placeholder="Пароль">
+      <input type="password" id="confirmPassword" placeholder="Повторите пароль">
+      <select id="role" style="display: none;">
+        <option value="user">Пользователь</option>
+      </select>
+      <div class="error" id="errorMessage"></div>
+      <button onclick="submitForm()">Зарегистрироваться</button>
+      <div class="switch" onclick="toggleForm()">Уже есть аккаунт? Войти</div>
+    </div>
+  </div>
+</body>
+<script>
+  // Добавляем администратора по умолчанию
+const defaultAdmin = {
+    name: "Администратор",
+    email: "admin@example.com",
+    phone: "71234567890",
+    password: "admin123",
+    role: "admin",
+    registrationDate: new Date().toISOString()
+  };
+
+  // Инициализация хранилища
+  const usersKey = "users";
+  let users = JSON.parse(localStorage.getItem(usersKey)) || {};
+
+  if (!users[defaultAdmin.phone]) {
+    users[defaultAdmin.phone] = defaultAdmin;
+    localStorage.setItem(usersKey, JSON.stringify(users));
+  }
+
+  let isLogin = false;
+
+  function toggleForm() {
+    isLogin = !isLogin;
+    document.getElementById("formTitle").innerText = isLogin ? "Вход" : "Регистрация";
+    document.querySelector("button").innerText = isLogin ? "Войти" : "Зарегистрироваться";
+    document.querySelector(".switch").innerText = isLogin
+      ? "Нет аккаунта? Зарегистрироваться"
+      : "Уже есть аккаунт? Войти";
+
+    // Показать/скрыть поля регистрации
+    document.getElementById("name").style.display = isLogin ? "none" : "block";
+    document.getElementById("email").style.display = isLogin ? "none" : "block";
+    document.getElementById("confirmPassword").style.display = isLogin ? "none" : "block";
+
+    clearError();
+  }
+
+  function showError(message) {
+    document.getElementById("errorMessage").innerText = message;
+  }
+
+  function clearError() {
+    document.getElementById("errorMessage").innerText = "";
+  }
+
+  function submitForm() {
+    clearError();
+
+    const phone = document.getElementById("phone").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    users = JSON.parse(localStorage.getItem(usersKey)) || {};
+
+    if (isLogin) {
+      // Логика входа
+      if (!phone || !password) {
+        return showError("Введите номер телефона и пароль");
+      }
+
+      const user = users[phone];
+      if (!user) {
+        return showError("Пользователь с таким номером не найден");
+      }
+
+      if (user.password !== password) {
+        return showError("Неверный пароль");
+      }
+
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      window.location.href = user.role === "admin" ? "админ.html" : "главная.html";
+    } else {
+      // Логика регистрации
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+      if (!name || !email || !phone || !password || !confirmPassword) {
+        return showError("Пожалуйста, заполните все поля");
+      }
+
+      if (!/^\+?[0-9\s\-]{7,15}$/.test(phone)) {
+        return showError("Некорректный номер телефона");
+      }
+
+      if (password.length < 6) {
+        return showError("Пароль должен быть не менее 6 символов");
+      }
+
+      if (password !== confirmPassword) {
+        return showError("Пароли не совпадают");
+      }
+
+      if (users[phone]) {
+        return showError("Пользователь с таким телефоном уже существует");
+      }
+
+      const newUser = {
+        name,
+        email,
+        phone,
+        password,
+        role: "user",
+        registrationDate: new Date().toISOString()
+      };
+
+      users[phone] = newUser;
+      localStorage.setItem(usersKey, JSON.stringify(users));
+      localStorage.setItem("currentUser", JSON.stringify(newUser));
+      window.location.href = "главная.html";
+    }
+  }
+</script>
+</html>
+

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мебельный магазин "Уютный Дом"</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="стиль/главная.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Уютный Дом</div>
+                <nav>
+                    <ul>
+                         <li><a href="главная.html">Главная</a></li>
+                        <li><a href="каталог.html">Каталог</a></li>
+                        <li><a href="о нас.html">О нас</a></li>
+                        <li><a href="корзина.html">Корзина</a></li>
+                       <li id="profileMenu" style="position: relative;">
+                        <a href="профиль.html" id="profileToggle" style="display: flex; align-items: center;">
+                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Профиль" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%; background: white;">
+                        <span id="profileName">Профиль</span> </a><div id="dropdownMenu" style="display: none; position: absolute; top: 35px; right: 0; background: white; color: black; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10px; z-index: 100;">
+                        <p id="userInfo" style="margin-bottom: 10px;"></p>
+                        <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Выйти</button></div>
+                        </li>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Создайте свой идеальный дом</h1>
+            <p>Мебель премиального качества, которая превратит ваше жилье в уютное гнездышко</p>
+            <a href="каталог.html" class="btn">Перейти в каталог</a>
+        </div>
+    </section>
+    
+    <section class="info-section">
+        <div class="container">
+            <h2>О нашем магазине</h2>
+            <p>Мы предлагаем только лучшую мебель от проверенных производителей. Наши изделия сочетают в себе современный дизайн, высокое качество материалов и доступные цены. С 2010 года мы помогаем нашим клиентам создавать комфортные и стильные интерьеры.</p>
+            <a href="каталог.html" class="btn">Посмотреть коллекцию</a>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>г. Москва, ул. Мебельная, 15</p>
+                <p>+7 (495) 123-45-67 | info@uyutny-dom.ru</p>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Мебельный магазин "Уютный Дом". Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Проверка авторизации
+        const user = JSON.parse(localStorage.getItem("currentUser"));
+        if (!user) {
+            window.location.href = "вход.html";
+        }
+    </script>
+</body>
+</html>

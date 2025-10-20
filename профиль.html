@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль | Уютный Дом</title>
+    <link rel="stylesheet" href="стиль/профиль.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Уютный Дом</div>
+                <nav>
+                    <ul>
+                        <li><a href="главная.html">Главная</a></li>
+                        <li><a href="каталог.html">Каталог</a></li>
+                        <li><a href="о нас.html">О нас</a></li>
+                        <li><a href="корзина.html">Корзина</a></li>
+                       <li id="profileMenu" style="position: relative;">
+                        <a href="профиль.html" id="profileToggle" style="display: flex; align-items: center;">
+                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Профиль" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%; background: white;">
+                        <span id="profileName">Профиль</span> </a><div id="dropdownMenu" style="display: none; position: absolute; top: 35px; right: 0; background: white; color: black; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10px; z-index: 100;">
+                        <p id="userInfo" style="margin-bottom: 10px;"></p>
+                        <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Выйти</button></div>
+                        </li>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+      <main>
+
+    <div class="container">
+      <div class="profile-card">
+        <h2>Личный кабинет</h2>
+        <div class="profile-info">
+          <label>Имя</label>
+          <input type="text" id="userName">
+
+          <label>Роль</label>
+          <input type="text" id="userRole" disabled>
+
+          <label>Email</label>
+          <input type="email" id="userEmail">
+
+          <label>Телефон</label>
+          <input type="text" id="userPhone">
+
+          <label>Адрес</label>
+          <input type="text" id="userAddress">
+        </div>
+
+        <div class="buttons">
+          <button id="logoutBtn">Выйти</button>
+        </div>
+      </div>
+    </div>
+    <section class="profile-section">
+  <h2>История заказов</h2>
+  <div id="orderHistoryContainer">
+    <!-- Здесь будет список заказов -->
+  </div>
+</section>
+
+<!-- Модальное окно для оформления заказа (пример, если нужно) -->
+<div id="orderModal" style="display:none;">
+  <!-- Форма заказа -->
+  <form id="orderForm">
+    <input type="text" name="name" placeholder="Ваше имя" required />
+    <input type="tel" name="phone" placeholder="Телефон" required />
+    <input type="text" name="address" placeholder="Адрес доставки" required />
+    <select name="payment" required>
+      <option value="">Выберите способ оплаты</option>
+      <option value="card">Карта</option>
+      <option value="cash">Наличные</option>
+    </select>
+    <button type="submit">Подтвердить заказ</button>
+    <button type="button" id="cancelOrderBtn">Отмена</button>
+  </form>
+</div>
+
+  </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>Мебельный магазин "Уютный Дом" - это качественная мебель по доступным ценам с 2010 года.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Каталог</h3>
+                    <ul>
+                        <li><a href="#">Гостиные</a></li>
+                        <li><a href="#">Спальни</a></li>
+                        <li><a href="#">Кухни</a></li>
+                        <li><a href="#">Офисная мебель</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>г. Москва, ул. Мебельная, 15</li>
+                        <li>+7 (495) 123-45-67</li>
+                        <li>info@uyutny-dom.ru</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Мы в соцсетях</h3>
+                    <ul>
+                        <li><a href="#">ВКонтакте</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Мебельный магазин "Уютный Дом". Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+    <script src="профиль.js"></script>
+</body>
+</html>
+
+

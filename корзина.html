@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина | Уютный Дом</title>
+    <link rel="stylesheet" href="стиль/корзина.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="modal-overlay" id="orderModal" style="display: none;">
+  <div class="modal-window">
+    <h2>Оформление заказа</h2>
+    <form id="orderForm">
+      <label>ФИО: <input type="text" name="name" required></label>
+      <label>Телефон: <input type="tel" name="phone" required></label>
+      <label>Адрес доставки: <input type="text" name="address" required></label>
+      <label>Способ оплаты:
+        <select name="payment">
+          <option value="card">Картой</option>
+          <option value="cash">Наличными</option>
+        </select>
+      </label>
+      <div style="margin-top: 1rem;">
+        <button type="submit" class="btn">Подтвердить заказ</button>
+        <button type="button" class="btn btn-outline" id="cancelOrderBtn">Отмена</button>
+      </div>
+    </form>
+  </div>
+</div>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Уютный Дом</div>
+                <nav>
+                    <ul>
+                         <li><a href="главная.html">Главная</a></li>
+                        <li><a href="каталог.html">Каталог</a></li>
+                        <li><a href="о нас.html">О нас</a></li>
+                        <li><a href="корзина.html">Корзина</a></li>
+                       <li id="profileMenu" style="position: relative;">
+                        <a href="профиль.html" id="profileToggle" style="display: flex; align-items: center;">
+                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Профиль" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%; background: white;">
+                        <span id="profileName">Профиль</span> </a><div id="dropdownMenu" style="display: none; position: absolute; top: 35px; right: 0; background: white; color: black; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10px; z-index: 100;">
+                        <p id="userInfo" style="margin-bottom: 10px;"></p>
+                        <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Выйти</button></div>
+                        </li>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="page-header">
+        <div class="container">
+            <h1>Ваша корзина</h1>
+            <ul class="breadcrumbs">
+                <li><a href="главная.html">Главная</a></li>
+                <li>Корзина</li>
+            </ul>
+        </div>
+    </section>
+    
+   <section class="cart-section">
+  <div class="container">
+
+    <!-- Пустая корзина -->
+    <div class="empty-cart" style="display: none;">
+      <div class="empty-cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <h2>Ваша корзина пуста</h2>
+      <p>Добавьте товары из каталога, чтобы продолжить</p>
+      <a href="каталог.html" class="btn">Перейти в каталог</a>
+    </div>
+
+    <!-- Корзина с товарами -->
+    <div class="cart-container" style="display: none;">
+      <div class="cart-items">
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Товар</th>
+              <th>Цена</th>
+              <th>Количество</th>
+              <th>Итого</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Итог заказа и промокод -->
+      <div class="cart-summary">
+        <div class="summary-card">
+          <h3 class="summary-title">Итого</h3>
+          <div class="summary-row">
+            <span class="item-count-label">Товары (0)</span>
+            <span class="item-count-total">0 руб.</span>
+          </div>
+          <div class="summary-row">
+            <span>Доставка</span>
+            <span>Бесплатно</span>
+          </div>
+          <div class="summary-row summary-total">
+            <span>К оплате</span>
+            <span class="total-price">0 руб.</span>
+          </div>
+          <button class="btn checkout-btn">Оформить заказ</button>
+          <a href="каталог.html" class="btn btn-outline">Продолжить покупки</a>
+        </div>
+
+        <div class="summary-card">
+          <h3 class="summary-title">Промокод</h3>
+          <p style="margin-bottom: 1rem;">Введите промокод, если он у вас есть</p>
+          <div style="display: flex;">
+            <input type="text" placeholder="Введите промокод"
+              style="flex: 1; padding: 0.8rem; border: 1px solid #ddd; border-radius: 4px 0 0 4px; border-right: none;">
+            <button
+              style="background-color: #2c3e50; color: white; border: none; padding: 0 1rem; border-radius: 0 4px 4px 0; cursor: pointer;">
+              Применить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section> 
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>Мебельный магазин "Уютный Дом" - это качественная мебель по доступным ценам с 2010 года.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Каталог</h3>
+                    <ul>
+                        <li><a href="#">Гостиные</a></li>
+                        <li><a href="#">Спальни</a></li>
+                        <li><a href="#">Кухни</a></li>
+                        <li><a href="#">Офисная мебель</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>г. Москва, ул. Мебельная, 15</li>
+                        <li>+7 (495) 123-45-67</li>
+                        <li>info@uyutny-dom.ru</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Мы в соцсетях</h3>
+                    <ul>
+                        <li><a href="#">ВКонтакте</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Мебельный магазин "Уютный Дом". Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+</body>
+<script src="вход.js"></script>
+<script src="корзина.js"></script>
+</html>

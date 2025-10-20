@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог мебели | Уютный Дом</title>
+    <link rel="stylesheet" href="стиль/каталог.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Уютный Дом</div>
+                <nav>
+                    <ul>
+                         <li><a href="главная.html">Главная</a></li>
+                        <li><a href="каталог.html">Каталог</a></li>
+                        <li><a href="о нас.html">О нас</a></li>
+                        <li><a href="корзина.html">Корзина</a></li>
+                       <li id="profileMenu" style="position: relative;">
+                        <a href="профиль.html" id="profileToggle" style="display: flex; align-items: center;">
+                         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Профиль" style="width: 24px; height: 24px; margin-right: 8px; border-radius: 50%; background: white;">
+                        <span id="profileName">Профиль</span> </a><div id="dropdownMenu" style="display: none; position: absolute; top: 35px; right: 0; background: white; color: black; border-radius: 4px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); padding: 10px; z-index: 100;">
+                        <p id="userInfo" style="margin-bottom: 10px;"></p>
+                        <button onclick="logout()" style="background-color: #e74c3c; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Выйти</button></div>
+                        </li>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    <section class="catalog-header">
+        <div class="container">
+            <h1>Каталог мебели</h1>
+            <ul class="breadcrumbs">
+                <li><a href="главная.html">Главная</a></li>
+                <li>Каталог</li>
+            </ul>
+        </div>
+    </section>
+    
+    <div class="container">
+        <div class="catalog-content">
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Категории</h3>
+                    <ul class="filter-list">
+                        <li><a href="#" class="category-filter" data-category="Гостиные">Гостиные</a></li>
+                        <li><a href="#" class="category-filter" data-category="Спальни">Спальни</a></li>
+                        <li><a href="#" class="category-filter" data-category="Кухни">Кухни</a></li>
+                        <li><a href="#" class="category-filter" data-category="Прихожие">Прихожие</a></li>
+                        <li><a href="#" class="category-filter" data-category="Детские">Детские</a></li>
+                        <li><a href="#" class="category-filter" data-category="Офисная мебель">Офисная мебель</a></li>
+                        <li><a href="#" class="category-filter" data-category="Садовые гарнитуры">Садовые гарнитуры</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+    <h3 class="sidebar-title">Фильтр по цене</h3>
+    <input type="range" class="price-range" id="priceRange" min="0" max="100000" step="1000" value="50000">
+    <div class="price-inputs">
+        <input type="number" id="minPrice" placeholder="От" value="0">
+        <input type="number" id="maxPrice" placeholder="До" value="100000">
+    </div>
+</div>
+
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Материал</h3>
+                    <ul class="filter-list">
+                        <li><a href="#" class="material-filter" data-material="Дерево">Дерево</a></li>
+                        <li><a href="#" class="material-filter" data-material="МДФ">МДФ</a></li>
+                        <li><a href="#" class="material-filter" data-material="ДСП">ДСП</a></li>
+                        <li><a href="#" class="material-filter" data-material="Металл">Металл</a></li>
+                        <li><a href="#" class="material-filter" data-material="Стекло">Стекло</a></li>
+                        <li><a href="#" class="material-filter" data-material="Пластик">Пластик</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Цвет</h3>
+                    <ul class="filter-list">
+                        <li><a href="#" class="color-filter" data-color="Белый">Белый</a></li>
+                        <li><a href="#" class="color-filter" data-color="Черный">Черный</a></li>
+                        <li><a href="#" class="color-filter" data-color="Коричневый">Коричневый</a></li>
+                        <li><a href="#" class="color-filter" data-color="Серый">Серый</a></li>
+                        <li><a href="#" class="color-filter" data-color="Бежевый">Бежевый</a></li>
+                        <li><a href="#" class="color-filter" data-color="Цветные">Цветные</a></li>
+                    </ul>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Стиль</h3>
+                    <ul class="filter-list">
+                        <li><a href="#" class="style-filter" data-style="Классика">Классика</a></li>
+                        <li><a href="#" class="style-filter" data-style="Модерн">Модерн</a></li>
+                        <li><a href="#" class="style-filter" data-style="Лофт">Лофт</a></li>
+                        <li><a href="#" class="style-filter" data-style="Скандинавский">Скандинавский</a></li>
+                        <li><a href="#" class="style-filter" data-style="Прованс">Прованс</a></li>
+                        <li><a href="#" class="style-filter" data-style="Минимализм">Минимализм</a></li>
+                    </ul>
+                </div>
+            </aside>
+            
+            <main class="main-content">
+                <div class="sorting">
+                    <div id="productCount">Найдено 9 товаров</div>
+                    <div>
+                        <label for="sort">Сортировка:</label>
+                        <select id="sort">
+                            <option value="popular">По популярности</option>
+                            <option value="price-asc">По возрастанию цены</option>
+                            <option value="price-desc">По убыванию цены</option>
+                            <option value="newest">По новизне</option>
+                            <option value="rating">По рейтингу</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="product-grid" id="productGrid">
+                    <div class="product-card" data-id="1" data-category="Гостиные" data-material="Дерево" data-color="Коричневый" data-style="Классика" data-price="24999" data-rating="4.5" data-date="2023-01-15">
+                        <div class="product-img" style="background-image: url('img/Диван\ Комфорт.jpg');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Гостиные</span>
+                            <h3>Диван "Комфорт"</h3>
+                            <div class="price">24 999 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="1"
+                                data-name='Диван "Комфорт"'
+                                data-price="24999"
+                                data-image="img/Диван Комфорт.jpg">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="2" data-category="Спальни" data-material="Дерево" data-color="Белый" data-style="Модерн" data-price="32500" data-rating="4.7" data-date="2023-02-20">
+                        <div class="product-img" style="background-image: url('img/Кровать\ Империал.webp');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Спальни</span>
+                            <h3>Кровать "Империал"</h3>
+                            <div class="price">32 500 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="2"
+                                data-name='Кровать "Империал"'
+                                data-price="32500"
+                                data-image="img/Кровать Империал.webp">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="3" data-category="Кухни" data-material="Дерево" data-color="Бежевый" data-style="Модерн" data-price="18750" data-rating="4.3" data-date="2023-03-10">
+                        <div class="product-img" style="background-image: url('img/Обеденный\ стол\ Гранд.jpg');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Кухни</span>
+                            <h3>Обеденный стол "Гранд"</h3>
+                            <div class="price">18 750 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="3"
+                                data-name='Обеденный стол "Гранд"'
+                                data-price="18750"
+                                data-image="img/Обеденный стол Гранд.jpg">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="4" data-category="Гостиные" data-material="Металл" data-color="Черный" data-style="Лофт" data-price="12990" data-rating="4.2" data-date="2023-01-25">
+                        <div class="product-img" style="background-image: url('img/Кресло\ Престиж.webp');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Гостиные</span>
+                            <h3>Кресло "Престиж"</h3>
+                            <div class="price">12 990 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="4"
+                                data-name='Кресло "Престиж"'
+                                data-price="12990"
+                                data-image="img/Кресло Престиж.webp">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="5" data-category="Спальни" data-material="МДФ" data-color="Серый" data-style="Скандинавский" data-price="28700" data-rating="4.4" data-date="2023-02-15">
+                        <div class="product-img" style="background-image: url('img/Шкаф-купе\ Элегант.jpeg');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Спальни</span>
+                            <h3>Шкаф-купе "Элегант"</h3>
+                            <div class="price">28 700 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="5"
+                                data-name='Шкаф-купе "Элегант"'
+                                data-price="28700"
+                                data-image="img/Шкаф-купе Элегант.jpeg">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="6" data-category="Кухни" data-material="ДСП" data-color="Белый" data-style="Модерн" data-price="45200" data-rating="4.6" data-date="2023-03-05">
+                        <div class="product-img" style="background-image: url('img/Кухонный\ гарнитур\ Модерн.webp');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Кухни</span>
+                            <h3>Кухонный гарнитур "Модерн"</h3>
+                            <div class="price">45 200 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="6"
+                                data-name='Кухонный гарнитур "Модерн"'
+                                data-price="45200"
+                                data-image="img/Кухонный гарнитур Модерн.webp">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="7" data-category="Гостиные" data-material="Стекло" data-color="Черный" data-style="Минимализм" data-price="9500" data-rating="4.1" data-date="2023-01-30">
+                        <div class="product-img" style="background-image: url('img/Журнальный\ столик\ Милан.webp');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Гостиные</span>
+                            <h3>Журнальный столик "Милан"</h3>
+                            <div class="price">9 500 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="7"
+                                data-name='Журнальный столик "Милан"'
+                                data-price="9500"
+                                data-image="img/Журнальный столик Милан.webp">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="8" data-category="Офисная мебель" data-material="Металл" data-color="Серый" data-style="Лофт" data-price="15300" data-rating="4.3" data-date="2023-02-10">
+                        <div class="product-img" style="background-image: url('img/Офисное\ кресло\ Босс.webp');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Офисная мебель</span>
+                            <h3>Офисное кресло "Босс"</h3>
+                            <div class="price">15 300 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="8"
+                                data-name='Офисное кресло "Босс"'
+                                data-price="15300"
+                                data-image="img/Офисное кресло Босс.webp">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card" data-id="9" data-category="Детские" data-material="Дерево" data-color="Цветные" data-style="Прованс" data-price="14800" data-rating="4.5" data-date="2023-03-01">
+                        <div class="product-img" style="background-image: url('img/Детская\ кровать\ Малыш.jpg');"></div>
+                        <div class="product-info">
+                            <span class="product-category">Детские</span>
+                            <h3>Детская кровать "Малыш"</h3>
+                            <div class="price">14 800 руб.</div>
+                            <button class="btn add-to-cart" 
+                                data-id="9"
+                                data-name='Детская кровать "Малыш"'
+                                data-price="14800"
+                                data-image="img/Детская кровать Малыш.jpg">
+                                В корзину
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="pagination">
+                    <li><a href="#">&laquo;</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">&raquo;</a></li>
+                </ul>
+            </main>
+        </div>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>О компании</h3>
+                    <p>Мебельный магазин "Уютный Дом" - это качественная мебель по доступным ценам с 2010 года.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Каталог</h3>
+                    <ul>
+                        <li><a href="#">Гостиные</a></li>
+                        <li><a href="#">Спальни</a></li>
+                        <li><a href="#">Кухни</a></li>
+                        <li><a href="#">Офисная мебель</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>г. Москва, ул. Мебельная, 15</li>
+                        <li>+7 (495) 123-45-67</li>
+                        <li>info@uyutny-dom.ru</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Мы в соцсетях</h3>
+                    <ul>
+                        <li><a href="#">ВКонтакте</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Мебельный магазин "Уютный Дом". Все права защищены.
+            </div>
+        </div>
+    </footer>
+
+<script>
+// Объект корзины (должен быть таким же как в корзина.html)
+const cart = {
+  items: JSON.parse(localStorage.getItem('cart')) || [],
+  
+  save() {
+    localStorage.setItem('cart', JSON.stringify(this.items));
+    this.updateCounter();
+  },
+  
+  add(product) {
+    const existing = this.items.find(item => item.id === product.id);
+    if(existing) {
+      existing.quantity++;
+    } else {
+      this.items.push({...product, quantity: 1});
+    }
+    this.save();
+    alert(`Товар "${product.name}" добавлен в корзину!`);
+  },
+  
+  remove(id) {
+    this.items = this.items.filter(item => item.id !== id);
+    this.save();
+  },
+  
+  updateQuantity(id, quantity) {
+    const item = this.items.find(item => item.id === id);
+    if(item) {
+      item.quantity = quantity;
+      this.save();
+    }
+  },
+  
+  getTotal() {
+    return this.items.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+  },
+  
+  updateCounter() {
+    const count = this.items.reduce((sum, item) => sum + item.quantity, 0);
+    document.querySelectorAll('.cart-count').forEach(el => el.textContent = count);
+  }
+};
+
+// Инициализация корзины
+document.addEventListener('DOMContentLoaded', () => {
+  cart.updateCounter();
+  
+  // Обработчики для кнопок "В корзину"
+  document.querySelectorAll('.add-to-cart').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const product = {
+        id: btn.dataset.id,
+        name: btn.dataset.name,
+        price: parseFloat(btn.dataset.price),
+        image: btn.dataset.image
+      };
+      cart.add(product);
+    });
+  });
+
+  // Сортировка товаров
+  const sortSelect = document.getElementById('sort');
+  sortSelect.addEventListener('change', sortProducts);
+
+  // Фильтрация по категориям
+  document.querySelectorAll('.category-filter').forEach(filter => {
+    filter.addEventListener('click', (e) => {
+      e.preventDefault();
+      filterProducts('category', filter.dataset.category);
+    });
+  });
+
+  // Фильтрация по материалу
+  document.querySelectorAll('.material-filter').forEach(filter => {
+    filter.addEventListener('click', (e) => {
+      e.preventDefault();
+      filterProducts('material', filter.dataset.material);
+    });
+  });
+
+  // Фильтрация по цвету
+  document.querySelectorAll('.color-filter').forEach(filter => {
+    filter.addEventListener('click', (e) => {
+      e.preventDefault();
+      filterProducts('color', filter.dataset.color);
+    });
+  });
+
+  // Фильтрация по стилю
+  document.querySelectorAll('.style-filter').forEach(filter => {
+    filter.addEventListener('click', (e) => {
+      e.preventDefault();
+      filterProducts('style', filter.dataset.style);
+    });
+  });
+
+  // Фильтрация по цене
+  const minPriceInput = document.getElementById('minPrice');
+  const maxPriceInput = document.getElementById('maxPrice');
+  const priceRange = document.querySelector('.price-range');
+
+  minPriceInput.addEventListener('change', filterByPrice);
+  maxPriceInput.addEventListener('change', filterByPrice);
+  priceRange.addEventListener('input', filterByPrice);
+});
+
+// Функция сортировки товаров
+function sortProducts() {
+  const sortValue = document.getElementById('sort').value;
+  const productGrid = document.getElementById('productGrid');
+  const products = Array.from(productGrid.querySelectorAll('.product-card'));
+
+  products.sort((a, b) => {
+    const priceA = parseFloat(a.dataset.price);
+    const priceB = parseFloat(b.dataset.price);
+    const ratingA = parseFloat(a.dataset.rating);
+    const ratingB = parseFloat(b.dataset.rating);
+    const dateA = new Date(a.dataset.date);
+    const dateB = new Date(b.dataset.date);
+
+    switch(sortValue) {
+      case 'price-asc':
+        return priceA - priceB;
+      case 'price-desc':
+        return priceB - priceA;
+      case 'rating':
+        return ratingB - ratingA;
+      case 'newest':
+        return dateB - dateA;
+      default:
+        return 0; // По популярности (по умолчанию)
+    }
+  });
+
+  // Очищаем и перезаполняем сетку
+  productGrid.innerHTML = '';
+  products.forEach(product => productGrid.appendChild(product));
+}
+
+// Функция фильтрации товаров
+function filterProducts(filterType, filterValue) {
+  const products = document.querySelectorAll('.product-card');
+  let visibleCount = 0;
+
+  products.forEach(product => {
+    if(product.dataset[filterType] === filterValue) {
+      product.style.display = 'block';
+      visibleCount++;
+    } else {
+      product.style.display = 'none';
+    }
+  });
+
+  document.getElementById('productCount').textContent = `Найдено ${visibleCount} товаров`;
+}
+
+// Функция фильтрации по цене
+function filterByPrice() {
+  const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('maxPrice').value) || 100000;
+  const products = document.querySelectorAll('.product-card');
+  let visibleCount = 0;
+
+  products.forEach(product => {
+    const price = parseFloat(product.dataset.price);
+    if(price >= minPrice && price <= maxPrice) {
+      product.style.display = 'block';
+      visibleCount++;
+    } else {
+      product.style.display = 'none';
+    }
+  });
+
+  document.getElementById('productCount').textContent = `Найдено ${visibleCount} товаров`;
+}
+
+const priceRange = document.getElementById('priceRange');
+const minPriceInput = document.getElementById('minPrice');
+const maxPriceInput = document.getElementById('maxPrice');
+
+// Обновляем range при изменении чисел
+minPriceInput.addEventListener('input', () => {
+    const min = parseInt(minPriceInput.value) || 0;
+    const max = parseInt(maxPriceInput.value) || 100000;
+
+    if (min >= 0 && min <= max) {
+        priceRange.value = min;
+    }
+});
+
+maxPriceInput.addEventListener('input', () => {
+    const min = parseInt(minPriceInput.value) || 0;
+    const max = parseInt(maxPriceInput.value) || 100000;
+
+    if (max >= min && max <= 100000) {
+        priceRange.value = max;
+    }
+});
+
+// Обновляем числа при движении range
+priceRange.addEventListener('input', () => {
+    const value = parseInt(priceRange.value);
+    minPriceInput.value = 0;
+    maxPriceInput.value = value;
+});
+
+</script>
+<script src="вход.js"></script>
+</body>
+</html>
